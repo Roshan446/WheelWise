@@ -1,0 +1,112 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block link_block%}
+<link rel="stylesheet" href="{%static 'css/product.detail.style.css'%}">
+{%endblock%}
+
+{%block main_block%}
+<header>
+    <!-- Jumbotron -->
+
+    <!-- Jumbotron -->
+  
+    <!-- Heading -->
+    <div class="bg-primary">
+      <div class="container py-4">
+        <!-- Breadcrumb -->
+        <nav class="d-flex">
+          <h6 class="mb-0">
+            <a href="" class="text-white-50">Home</a>
+            <span class="text-white-50 mx-2"> > </span>
+            <a href="" class="text-white-50">Library</a>
+            <span class="text-white-50 mx-2"> > </span>
+            <a href="" class="text-white"><u>Data</u></a>
+          </h6>
+        </nav>
+        <!-- Breadcrumb -->
+      </div>
+    </div>
+    <!-- Heading -->
+  </header>
+  
+  <!-- content -->
+  <section class="py-5 mt-5">
+    <div class="container">
+      <div class="row gx-5">
+        <aside class="col-lg-6">
+          <div class="border rounded-4 mb-3 d-flex justify-content-center">
+            <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/detail1/big.webp">
+              <img style="max-width: 100%; max-height: 500px; margin: auto;" class="rounded-4 fit" src="{{bike.image.url}}" />
+            </a>
+          </div>
+
+          <!-- thumbs-wrap.// -->
+          <!-- gallery-wrap .end// -->
+        </aside>
+        <main class="col-lg-6">
+          <div class="ps-lg-3">
+            <h4 class="title text-dark">
+              {{bike.name}}
+            </h4>
+
+  
+            <div class="mb-3">
+              <span class="h5">{{bike.price}} Rs</span>
+            </div>
+  
+            <p>
+              {{bike.description}}
+            </p>
+  
+            <div class="row">
+              <dt class="col-3">Category:</dt>
+              <dd class="col-9">{{bike.category}}</dd>
+  
+              <!-- <dt class="col-3">Dimensions</dt>
+              <dd class="col-9">{{data.height}}×{{data.width}}×{{data.breadth}}</dd> -->
+
+  
+              <dt class="col-3">Brand</dt>
+              <dd class="col-9">{{bike.brand_object}}</dd>
+
+               
+              <dt class="col-3">Bike Ownership type</dt>
+              <dd class="col-9">{{bike.bike_ownership_count}} owner</dd>
+            </div>
+  
+            <hr />
+  
+            <div class="row mb-4">
+\
+              <!-- col.// -->
+              {%if bike.user_object == request.user%}
+<!-- Delete Details (Blue) -->
+<div>
+  <a href="{%url 'bike-delete' bike.id%}" class="btn btn-primary shadow-0">
+    <i class="me-1 fa fa-trash"></i> Delete
+  </a>
+  
+  <!-- Update Details (White) -->
+  <a href="{%url 'bike-update' bike.id%}" class="btn btn-light border border-secondary py-2 icon-hover px-3">
+    <i class="me-1 fa fa-edit"></i> Update
+  </a>
+</div>
+              {%else%}
+              
+            </div>
+           
+            <a href="#" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-heart"></i> Wishlist </a> <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i class="me-1 fa fa-question-circle fa-lg"></i> Enquire Now </a>
+          </div>
+              {%endif%}
+        </main>
+      </div>
+    </div>
+  </section>
+  <!-- content -->
+  
+
+  <!-- Footer -->
+
+  <!-- Footer -->
+  
+{%endblock%}

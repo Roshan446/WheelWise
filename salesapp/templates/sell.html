@@ -1,0 +1,284 @@
+{%extends 'base.html'%}
+{%load static%}
+
+
+
+    <title>Add Your Bike</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+{%block main_block%}
+<style>
+    html,
+    body {
+        min-height: 90%;
+    }
+
+    body,
+    div,
+    form,
+    input,
+    select,
+    textarea,
+    p {
+        padding: 0;
+        margin: 0;
+        outline: none;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 14px;
+        color: #382fe6;
+        line-height: 22px;
+    }
+
+    h1 {
+        position: absolute;
+        margin: 0;
+        font-size: 36px;
+        color: #fff;
+        z-index: 2;
+    }
+
+    .testbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: inherit;
+        padding: 20px;
+    }
+
+    form {
+        width: 100%;
+        padding: 20px;
+        border-radius: 6px;
+        background: #ffffff;
+        box-shadow: 0 0 20px 0 #333;
+    }
+
+    .banner {
+        position: relative;
+        height: 500px;
+        background-image: url("{%static 'img\car\11480-motorcycle-bike-sports-black-side-view-power-4k.jpg'%}");
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .banner::after {
+        content: "";
+        background-color: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    input,
+    textarea,
+    select {
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    input {
+        width: calc(100% - 10px);
+        padding: 5px;
+    }
+
+    select {
+        width: 100%;
+        padding: 7px 0;
+        background: transparent;
+    }
+
+    textarea {
+        width: calc(100% - 12px);
+        padding: 5px;
+    }
+
+    .item:hover p,
+    .item:hover i,
+    .question:hover p,
+    .question label:hover,
+    input:hover::placeholder {
+        color: #333;
+    }
+
+    .item input:hover,
+    .item select:hover,
+    .item textarea:hover {
+        border: 1px solid transparent;
+        box-shadow: 0 0 6px 0 #333;
+        color: #333;
+    }
+
+    .item {
+        position: relative;
+        margin: 10px 0;
+    }
+
+    [type="date"]::-webkit-inner-spin-button {
+        display: none;
+    }
+
+    [type="date"]::-webkit-calendar-picker-indicator {
+        position: absolute;
+        font-size: 20px;
+        color: #3910a1;
+        right: 1%;
+        top: 30px;
+        z-index: 1;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    [type="date"]::-webkit-calendar-picker-indicator {
+        right: 0;
+        z-index: 2;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    input[type="time"]::-webkit-inner-spin-button {
+        margin: 2px 22px 0 0;
+    }
+
+    .btn-block {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    button {
+        width: 150px;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background: #444;
+        font-size: 16px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #666;
+    }
+
+    @media (min-width: 568px) {
+        .name-item,
+        .city-item {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .name-item input,
+        .city-item input {
+            width: calc(50% - 20px);
+        }
+
+        .city-item select {
+            width: calc(50% - 8px);
+        }
+    }
+</style>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="testbox">
+                <form action="{% url 'bike-sell'%}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="banner">
+                        <h1>ADD YOUR BIKE HERE</h1>
+                    </div>
+                    <div class="item">
+                        <p>Name</p>
+                        <div class="name-item">
+                            <input type="text" name="name" placeholder="Please Enter Your Bike Model Name" required>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <p>Description</p>
+                        <textarea name="description" rows="3" placeholder="Please Enter Description"></textarea>
+                    </div>
+                    <div class="item">
+                        <p>Brand</p>
+                        <select name="brand_object" required>
+                            <option value="nil">-</option>
+
+                            {% for b in brand %}
+                            <option value="{{b.id}}">{{b.name}}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                    <div class="item">
+                        <p>Image</p>
+                        <input type="file" name="image">
+                    </div>
+                    <div class="item">
+                        <p>Kms Driven</p>
+                        <div class="name-item">
+                            <input type="text" name="kms_driven" placeholder="Please Enter The Kms Your Motor Vehicle Has Driven" required>
+                        </div>
+                    <div class="item">
+                        <p>Price</p>
+                        <div class="name-item">
+                            <input type="text" name="price" placeholder="Please Enter Your Selling Price" required>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <p>Fuel Type</p>
+                        <select name="fuelType_object" required>
+                            <option value="petrol">Petrol</option>
+                            <option value="EV">Electric Vehicle</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <p>Category</p>
+                        <select name="category" required>
+                            <option value="gear less">Gear Less</option>
+                            <option value="gear">Gear</option>
+                        </select>
+                    </div>
+                    <div class="item">
+                        <p>Bike Ownership Count</p>
+                        <input type="number" name="bike_ownership_count"    required>
+                        <p>Bike Registeration Year</p>
+                        <input type="number" name="registrationyear_object" required>
+                    </div>
+                    <div class="item">
+                        <p>Engine Power (CC)</p>
+                        <input type="number" name="enginepower_cc" required>
+                    </div>
+                    <div class="item d-flex justify-content">
+                        <p>City</p>
+                        <select name="city_object" class="px-2" required>
+                            <option value="#">   </option>
+
+                            {% for c in city %}
+                            <option value="{{c.id}}">{{c.name}}</option>
+                            {% endfor %}
+
+                        </select>
+                        <p class="px-2">Is It AVAILABLE?</p>
+                        <input type="checkbox" name="sale_status" value="True" required>
+
+
+                    </div>
+
+                    <!-- Add other fields here as per your model -->
+                    <div class="btn-block">
+                        <button class="btn btn-hover-effect  bg-primary text-white " type="submit">Submit</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+
+{% endblock %}

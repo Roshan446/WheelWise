@@ -1,0 +1,35 @@
+/* Center the brand container */
+.brand-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Individual brand item styling */
+  .brand-item {
+    width: 150px; /* Adjust width as needed */
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .brand-item img {
+    width: 4.5cm; /* Width of the image */
+    height: 4cm; /* Height of the image */
+    object-fit: cover;
+    border-radius: 50%; /* Rounded corners for circular images */
+  }
+  
+  /* Hover effect for the brand image */
+  .brand-item img:hover {
+    transform: scale(1.1); /* Increase size on hover */
+    transition: transform 0.3s ease; /* Smooth transition effect */
+  }
+  .custom-smaller-height {
+    height: 50px; /* Adjust as needed */
+}
+
+.custom-image-size {
+    width: 50px; /* Adjust as needed */
+}
+
