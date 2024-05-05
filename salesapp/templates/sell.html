@@ -10,194 +10,139 @@
 
 {%block main_block%}
 <style>
-    html,
-    body {
-        min-height: 90%;
-    }
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ccd7ea;
+    color: #333;
+}
 
-    body,
-    div,
-    form,
-    input,
-    select,
-    textarea,
-    p {
-        padding: 0;
-        margin: 0;
-        outline: none;
-        font-family: Roboto, Arial, sans-serif;
-        font-size: 14px;
-        color: #382fe6;
-        line-height: 22px;
-    }
+/* Banner Styles */
+.banner {
+    height: 400px;
+    background-image: url("{%static 'img/car/11480-motorcycle-bike-sports-black-side-view-power-4k.jpg'%}");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 
-    h1 {
-        position: absolute;
-        margin: 0;
-        font-size: 36px;
-        color: #fff;
-        z-index: 2;
-    }
+.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
 
-    .testbox {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: inherit;
-        padding: 20px;
-    }
+.banner h1 {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    font-size: 48px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 
+/* Form Styles */
+form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    animation: slide-up 0.5s ease-out;
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.item {
+    margin-bottom: 20px;
+}
+
+.item p {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+input,
+textarea,
+select {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #ff6b6b;
+}
+
+/* Button Styles */
+.btn-block {
+    text-align: center;
+    margin-top: 30px;
+}
+
+button {
+    background-color: #ff6b6b;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff4d4d;
+    transform: translateY(-2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
     form {
-        width: 100%;
         padding: 20px;
-        border-radius: 6px;
-        background: #ffffff;
-        box-shadow: 0 0 20px 0 #333;
     }
-
-    .banner {
-        position: relative;
-        height: 500px;
-        background-image: url("{%static 'img\car\11480-motorcycle-bike-sports-black-side-view-power-4k.jpg'%}");
-        background-size: cover;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-
-    .banner::after {
-        content: "";
-        background-color: rgba(0, 0, 0, 0.4);
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-
-    input,
-    textarea,
-    select {
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-    }
-
-    input {
-        width: calc(100% - 10px);
-        padding: 5px;
-    }
-
-    select {
-        width: 100%;
-        padding: 7px 0;
-        background: transparent;
-    }
-
-    textarea {
-        width: calc(100% - 12px);
-        padding: 5px;
-    }
-
-    .item:hover p,
-    .item:hover i,
-    .question:hover p,
-    .question label:hover,
-    input:hover::placeholder {
-        color: #333;
-    }
-
-    .item input:hover,
-    .item select:hover,
-    .item textarea:hover {
-        border: 1px solid transparent;
-        box-shadow: 0 0 6px 0 #333;
-        color: #333;
-    }
-
-    .item {
-        position: relative;
-        margin: 10px 0;
-    }
-
-    [type="date"]::-webkit-inner-spin-button {
-        display: none;
-    }
-
-    [type="date"]::-webkit-calendar-picker-indicator {
-        position: absolute;
-        font-size: 20px;
-        color: #3910a1;
-        right: 1%;
-        top: 30px;
-        z-index: 1;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    [type="date"]::-webkit-calendar-picker-indicator {
-        right: 0;
-        z-index: 2;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    input[type="time"]::-webkit-inner-spin-button {
-        margin: 2px 22px 0 0;
-    }
-
-    .btn-block {
-        margin-top: 10px;
-        text-align: center;
-    }
-
-    button {
-        width: 150px;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        background: #444;
-        font-size: 16px;
-        color: #fff;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background: #666;
-    }
-
-    @media (min-width: 568px) {
-        .name-item,
-        .city-item {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .name-item input,
-        .city-item input {
-            width: calc(50% - 20px);
-        }
-
-        .city-item select {
-            width: calc(50% - 8px);
-        }
-    }
+}
 </style>
 <div class="container mt-5">
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
+        <div class="col-12">
             <div class="testbox">
-                <form action="{% url 'bike-sell'%}" method="post" enctype="multipart/form-data">
+                <form action="{% url 'bike-sell' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="banner">
                         <h1>ADD YOUR BIKE HERE</h1>
                     </div>
                     <div class="item">
                         <p>Name</p>
-                        <div class="name-item">
-                            <input type="text" name="name" placeholder="Please Enter Your Bike Model Name" required>
-                        </div>
+                        <input type="text" name="name" placeholder="Please Enter Your Bike Model Name" required>
                     </div>
                     <div class="item">
                         <p>Description</p>
@@ -207,12 +152,10 @@
                         <p>Brand</p>
                         <select name="brand_object" required>
                             <option value="nil">-</option>
-
                             {% for b in brand %}
-                            <option value="{{b.id}}">{{b.name}}</option>
+                            <option value="{{ b.id }}">{{ b.name }}</option>
                             {% endfor %}
                         </select>
-
                     </div>
                     <div class="item">
                         <p>Image</p>
@@ -220,14 +163,11 @@
                     </div>
                     <div class="item">
                         <p>Kms Driven</p>
-                        <div class="name-item">
-                            <input type="text" name="kms_driven" placeholder="Please Enter The Kms Your Motor Vehicle Has Driven" required>
-                        </div>
+                        <input type="text" name="kms_driven" placeholder="Please Enter The Kms Your Motor Vehicle Has Driven" required>
+                    </div>
                     <div class="item">
                         <p>Price</p>
-                        <div class="name-item">
-                            <input type="text" name="price" placeholder="Please Enter Your Selling Price" required>
-                        </div>
+                        <input type="text" name="price" placeholder="Please Enter Your Selling Price" required>
                     </div>
                     <div class="item">
                         <p>Fuel Type</p>
@@ -245,7 +185,9 @@
                     </div>
                     <div class="item">
                         <p>Bike Ownership Count</p>
-                        <input type="number" name="bike_ownership_count"    required>
+                        <input type="number" name="bike_ownership_count" required>
+                    </div>
+                    <div class="item">
                         <p>Bike Registeration Year</p>
                         <input type="number" name="registrationyear_object" required>
                     </div>
@@ -253,32 +195,25 @@
                         <p>Engine Power (CC)</p>
                         <input type="number" name="enginepower_cc" required>
                     </div>
-                    <div class="item d-flex justify-content">
+                    <div class="item">
                         <p>City</p>
-                        <select name="city_object" class="px-2" required>
-                            <option value="#">   </option>
-
+                        <select name="city_object" required>
+                            <option value="#">-</option>
                             {% for c in city %}
-                            <option value="{{c.id}}">{{c.name}}</option>
+                            <option value="{{ c.id }}">{{ c.name }}</option>
                             {% endfor %}
-
                         </select>
-                        <p class="px-2">Is It AVAILABLE?</p>
-                        <input type="checkbox" name="sale_status" value="True" required>
-
-
                     </div>
-
-                    <!-- Add other fields here as per your model -->
+                    <div class="item">
+                        <p>Is It AVAILABLE?</p>
+                        <input type="checkbox" name="sale_status" value="True" required>
+                    </div>
                     <div class="btn-block">
-                        <button class="btn btn-hover-effect  bg-primary text-white " type="submit">Submit</button>
+                        <button class="btn" type="submit">Submit</button>
                     </div>
                 </form>
-                
             </div>
         </div>
-        <div class="col-1"></div>
     </div>
 </div>
-
 {% endblock %}

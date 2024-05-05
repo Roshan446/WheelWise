@@ -51,7 +51,7 @@ class SigninView(View):
             if user_auth:
                 login(request, user_auth)
                 print(request.user)
-                return redirect("bike-sell")
+                return redirect("home")
             
             else:
                 return render(request, "signup.html", {"data":form})
@@ -317,7 +317,7 @@ class AddedBikesDeleteView(View):
         qs = qs.delete()
         return redirect("added-bike")
 
-@method_decorator(deccor, name="dispatch")
+
 class SignoutView(View):
     def get(self, request, *args, **kwargs):
         

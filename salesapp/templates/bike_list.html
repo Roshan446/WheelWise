@@ -19,6 +19,63 @@
         transform: translateY(-3px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+    /* Add subtle hover effect on bike cards */
+.packages-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.packages-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Improve readability and spacing */
+.packages-content h4 {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.packages-content h5 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.packages-content small {
+    font-size: 0.9rem;
+}
+
+.packages-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Adjust button styles */
+.btn-hover {
+    transition: all 0.3s ease;
+}
+
+.btn-hover:hover {
+    background-color: #007bff;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .col-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
 </style>
 {% endblock %}
 
